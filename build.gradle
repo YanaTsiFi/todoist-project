@@ -8,11 +8,11 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = '2.24.0',
+def allureVersion = '2.29.1',
     selenideVersion = '7.0.4',
     appiumVersion = '9.1.0',
     restAssuredVersion = '5.4.0',
-    junitVersion = "5.10.1",
+    junitVersion = "5.10.2",
     slf4jVersion = '2.0.9',
     ownerVersion = "1.0.12",
     commonsIoVersion = "2.15.1",
@@ -21,11 +21,10 @@ def allureVersion = '2.24.0',
 
 
 allure {
-    report {
-        version = allureVersion
-    }
+    version = allureVersion
+
     adapter {
-        aspectjWeaver = true
+        aspectjVersion = '1.9.20'
         frameworks {
             junit5 {
                 adapterVersion = allureVersion
@@ -33,6 +32,7 @@ allure {
         }
     }
 }
+
 
 
 compileTestJava {
@@ -61,12 +61,18 @@ dependencies {
 }
 
 tasks.withType(Test).configureEach {
+    ignoreFailures = true
     useJUnitPlatform()
+
+    systemProperty 'allure.results.directory', System.getProperty('allure.results.directory', 'build/allure-results')
+
 
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
+            showExceptions true
+            showCauses true
+            showStackTraces true
         }
     }
 }

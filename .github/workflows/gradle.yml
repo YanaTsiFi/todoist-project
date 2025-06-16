@@ -36,60 +36,15 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run WEB tests
-        run: |
-          rm -rf build/allure-results-web
-          allurectl watch -- ./gradlew clean webTests -Dallure.results.directory=build/allure-results-web
+      - name: Run all tests
+        run: allurectl watch -- ./gradlew clean test
         env:
-          ALLURE_RESULTS: build/allure-results-web
+          ALLURE_RESULTS: build/allure-results
 
-      - name: Upload WEB results
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: allure-results-web
-          path: build/allure-results-web
-          retention-days: 5
-
-      - name: Run API tests
-        run: |
-          rm -rf build/allure-results-api
-          allurectl watch -- ./gradlew clean apiTests -Dallure.results.directory=build/allure-results-api
-        env:
-          ALLURE_RESULTS: build/allure-results-api
-
-      - name: Upload API results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: allure-results-api
-          path: build/allure-results-api
-          retention-days: 5
-
-      - name: Run MOBILE tests
-        run: |
-          rm -rf build/allure-results-mobile
-          allurectl watch -- ./gradlew clean mobileTests -Dallure.results.directory=build/allure-results-mobile
-        env:
-          ALLURE_RESULTS: build/allure-results-mobile
-
-      - name: Upload MOBILE results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: allure-results-mobile
-          path: build/allure-results-mobile
-          retention-days: 5
-
-      - name: Combine all results
-        run: |
-          mkdir -p build/allure-results-combined
-          find build/allure-results-* -type f -exec cp {} build/allure-results-combined \;
-
-      - name: Upload combined results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: allure-results-combined
-          path: build/allure-results-combined
+          name: allure-results
+          path: build/allure-results
           retention-days: 5

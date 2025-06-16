@@ -21,13 +21,11 @@ def allureVersion = '2.29.1',
 
 
 allure {
-    version = allureVersion
-
+    version = '2.24.0'
     adapter {
-        aspectjVersion = '1.9.20'
         frameworks {
             junit5 {
-                adapterVersion = allureVersion
+                adapterVersion = '2.24.0'
             }
         }
     }
@@ -64,7 +62,7 @@ tasks.withType(Test).configureEach {
     ignoreFailures = true
     useJUnitPlatform()
 
-    systemProperty 'allure.results.directory', System.getProperty('allure.results.directory', 'build/allure-results')
+    systemProperty 'allure.results.directory', 'build/allure-results'
 
 
     testLogging {

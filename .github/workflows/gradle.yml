@@ -1,0 +1,77 @@
+name: Allure TestOps Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      ALLURE_JOB_RUN_ID:
+        description: "Inner parameter for Allure TestOps"
+        required: false
+      ALLURE_USERNAME:
+        description: "Inner parameter for Allure TestOps"
+        required: false
+
+env:
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - uses: allure-framework/setup-allurectl@v1
+        with:
+          allure-endpoint: https://allure.autotests.cloud
+          allure-token: ${{ secrets.ALLURE_TOKEN }}
+          allure-project-id: 4793
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run WEB tests
+        run: allurectl watch -- ./gradlew clean webTests
+        env:
+          ALLURE_RESULTS: build/allure-results
+
+      - name: Save WEB results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results
+          path: build/allure-results
+          retention-days: 5
+
+      - name: Run API tests
+        run: allurectl watch -- ./gradlew clean apiTests
+        env:
+          ALLURE_RESULTS: build/allure-results
+
+      - name: Save API results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results-api
+          path: build/allure-results
+          retention-days: 5
+
+      - name: Run MOBILE tests
+        run: allurectl watch -- ./gradlew clean mobileTests
+        env:
+          ALLURE_RESULTS: build/allure-results
+
+      - name: Save MOBILE results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results-mobile
+          path: build/allure-results
+          retention-days: 5
+

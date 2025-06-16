@@ -36,42 +36,15 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run WEB tests
-        run: allurectl watch -- ./gradlew clean webTests
+      - name: Run Tests
+        run: allurectl watch -- ./gradlew clean test
         env:
           ALLURE_RESULTS: build/allure-results
 
-      - name: Save WEB results
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: allure-results
           path: build/allure-results
           retention-days: 5
-
-      - name: Run API tests
-        run: allurectl watch -- ./gradlew clean apiTests
-        env:
-          ALLURE_RESULTS: build/allure-results
-
-      - name: Save API results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: allure-results-api
-          path: build/allure-results
-          retention-days: 5
-
-      - name: Run MOBILE tests
-        run: allurectl watch -- ./gradlew clean mobileTests
-        env:
-          ALLURE_RESULTS: build/allure-results
-
-      - name: Save MOBILE results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: allure-results-mobile
-          path: build/allure-results
-          retention-days: 5
-

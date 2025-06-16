@@ -1,4 +1,4 @@
-name: Allure Multi Test Types
+name: Allure TestOps Integration
 
 on:
   push:
@@ -41,7 +41,7 @@ jobs:
         env:
           ALLURE_RESULTS: build/allure-results
 
-      - name: Save WEB results
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -54,7 +54,7 @@ jobs:
         env:
           ALLURE_RESULTS: build/allure-results
 
-      - name: Save API results
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -67,7 +67,7 @@ jobs:
         env:
           ALLURE_RESULTS: build/allure-results
 
-      - name: Save MOBILE results
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         if: always()
         with:

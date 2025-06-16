@@ -12,17 +12,20 @@ def allureVersion = '2.24.0',
     selenideVersion = '7.0.4',
     appiumVersion = '9.1.0',
     restAssuredVersion = '5.4.0',
-    junitVersion = "5.10.2",
+    junitVersion = "5.10.1",
     slf4jVersion = '2.0.9',
     ownerVersion = "1.0.12",
     commonsIoVersion = "2.15.1",
     assertjVersion = '3.25.3',
     jacksonVersion = "2.16.1"
 
-allure {
-    version = allureVersion
 
+allure {
+    report {
+        version = allureVersion
+    }
     adapter {
+        aspectjWeaver = true
         frameworks {
             junit5 {
                 adapterVersion = allureVersion
@@ -31,11 +34,14 @@ allure {
     }
 }
 
+
 compileTestJava {
     options.encoding = 'UTF-8'
 }
 
+
 dependencies {
+
     testImplementation(
             'commons-codec:commons-codec:1.15',
             "net.datafaker:datafaker:2.0.2",
@@ -50,25 +56,18 @@ dependencies {
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "io.appium:java-client:$appiumVersion",
             "commons-io:commons-io:$commonsIoVersion",
-            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
-            "org.aspectj:aspectjweaver:1.9.20"
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     )
 }
 
 tasks.withType(Test).configureEach {
-    ignoreFailures = true
     useJUnitPlatform()
 
-    systemProperties = [
-            'allure.results.directory': 'build/allure-results',
-            'allure.link.issue.pattern': 'https://jira.yourcompany.com/browse/{}',
-            'allure.link.tms.pattern'  : 'https://testops.yourcompany.com/tms/{}',
-            'junit.jupiter.execution.parallel.enabled': 'false'
-    ]
-
     testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        showStandardStreams = true
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
     }
 }
 

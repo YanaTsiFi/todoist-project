@@ -60,9 +60,7 @@ dependencies {
 }
 
 tasks.withType(Test).configureEach {
-    useJUnitPlatform {
-        excludeTags 'MANUAL'
-    }
+    useJUnitPlatform ()
 
     testLogging {
         lifecycle {

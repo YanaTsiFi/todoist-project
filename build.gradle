@@ -15,7 +15,6 @@ def allureVersion = '2.24.0',
     junitVersion = "5.10.1",
     slf4jVersion = '2.0.9',
     ownerVersion = "1.0.12",
-    commonsIoVersion = "2.15.1",
     assertjVersion = '3.25.3',
     jacksonVersion = "2.16.1"
 
@@ -55,14 +54,15 @@ dependencies {
             "io.rest-assured:rest-assured:$restAssuredVersion",
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "io.appium:java-client:$appiumVersion",
-            "commons-io:commons-io:$commonsIoVersion",
             "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
             "io.qameta.allure:allure-java-commons:$allureVersion"
     )
 }
 
 tasks.withType(Test).configureEach {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        excludeTags 'MANUAL'
+    }
 
     testLogging {
         lifecycle {

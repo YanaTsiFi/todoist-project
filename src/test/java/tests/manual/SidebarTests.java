@@ -1,15 +1,15 @@
 package tests.manual;
 
-import annotations.Manual;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("MANUAL")
 public class SidebarTests {
 
     @Test
-    @Manual
-    @Disabled("Ручной тест")
+    @Disabled("Ручной тест — не запускается автоматически")
     @DisplayName("Открытие и закрытие боковой панели в профиле")
     public void shouldOpenAndCloseSidebar() {
         /*

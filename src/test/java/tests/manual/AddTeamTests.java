@@ -1,15 +1,15 @@
 package tests.manual;
 
-import annotations.Manual;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("MANUAL")
 public class AddTeamTests {
 
     @Test
-    @Manual
-    @Disabled("Ручной тест")
+    @Disabled("Ручной тест — не запускается автоматически")
     @DisplayName("Добавление новой команды в профиле")
     public void shouldAddNewTeamFromProfile() {
         /*

@@ -55,6 +55,7 @@ dependencies {
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "io.appium:java-client:$appiumVersion",
             "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+            "io.qameta.allure:allure-java-commons:$allureVersion",
             "io.qameta.allure:allure-java-commons:$allureVersion"
     )
 }

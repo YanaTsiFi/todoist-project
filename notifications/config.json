@@ -1,8 +1,8 @@
 {
   "base": {
-    "project": "Some project name",
-    "environment": "qa.guru",
-    "comment": "comment here @iterkin",
+    "project": "Todoist project",
+    "environment": "Dev",
+    "comment": "Test",
     "reportLink": "https://jenkins.autotests.cloud/job/YanaTsiFi-todoist-project/",
     "language": "en",
     "allureFolder": "allure-report",

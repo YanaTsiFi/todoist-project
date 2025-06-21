@@ -1,9 +1,11 @@
 package tests.manual;
 
 import annotations.Manual;
-import io.qameta.allure.Allure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static io.qameta.allure.Allure.label;
+import static io.qameta.allure.Allure.step;
 
 public class AddTeamTests {
 
@@ -11,19 +13,13 @@ public class AddTeamTests {
     @Manual
     @DisplayName("Добавление новой команды в профиле")
     public void shouldAddNewTeamFromProfile() {
-        Allure.label("ALLURE_MANUAL", "true");
-        /*
-         Предусловие: Пользователь авторизован и находится в разделе "Профиль"
+        label("ALLURE_MANUAL", "true");
 
-         Шаги:
-         1. Перейти в раздел "Команды" или аналогичный
-         2. Нажать на кнопку "Добавить команду"
-         3. Заполнить обязательные поля (например: название, участники)
-         4. Подтвердить создание команды
-         5. Убедиться, что команда появилась в списке
-
-         Ожидаемый результат:
-         Новая команда успешно создаётся и отображается в интерфейсе
-         */
+        step("Предусловие: Пользователь авторизован и находится в разделе 'Профиль'");
+        step("Нажать на кнопку 'Добавить команду'");
+        step("Заполнить обязательные поля (например: название)");
+        step("Подтвердить создание команды");
+        step("Убедиться, что команда появилась в списке");
+        step("Ожидаемый результат: Новая команда успешно создаётся и отображается в интерфейсе");
     }
 }

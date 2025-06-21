@@ -1,9 +1,11 @@
 package tests.manual;
 
 import annotations.Manual;
-import io.qameta.allure.Allure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static io.qameta.allure.Allure.label;
+import static io.qameta.allure.Allure.step;
 
 public class SidebarTests {
 
@@ -11,19 +13,14 @@ public class SidebarTests {
     @Manual
     @DisplayName("Открытие и закрытие боковой панели в профиле")
     public void shouldOpenAndCloseSidebar() {
-        Allure.label("ALLURE_MANUAL", "true");
-        /*
-         Предусловие: Пользователь авторизован
+        label("ALLURE_MANUAL", "true");
 
-         Шаги:
-         1. Перейти в раздел "Профиль"
-         2. Нажать кнопку открытия боковой панели
-         3. Убедиться, что панель открылась
-         4. Нажать кнопку закрытия
-         5. Убедиться, что панель закрылась
-
-         Ожидаемый результат:
-         Панель корректно появляется и исчезает
-         */
+        step("Предусловие: Пользователь авторизован");
+        step("Перейти в раздел 'Профиль'");
+        step("Нажать кнопку открытия боковой панели");
+        step("Убедиться, что панель открылась");
+        step("Нажать кнопку закрытия");
+        step("Убедиться, что панель закрылась");
+        step("Ожидаемый результат: Панель корректно появляется и исчезает");
     }
 }

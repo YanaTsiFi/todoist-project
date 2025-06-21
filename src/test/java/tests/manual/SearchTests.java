@@ -1,9 +1,11 @@
 package tests.manual;
 
 import annotations.Manual;
-import io.qameta.allure.Allure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static io.qameta.allure.Allure.label;
+import static io.qameta.allure.Allure.step;
 
 public class SearchTests {
 
@@ -11,19 +13,14 @@ public class SearchTests {
     @Manual
     @DisplayName("Проверка поиска в профиле")
     public void shouldSearchCorrectlyInProfile() {
-        Allure.label("ALLURE_MANUAL", "true");
-        /*
-         Предусловие: Пользователь авторизован и находится в разделе "Профиль"
+        label("ALLURE_MANUAL", "true");
 
-         Шаги:
-         1. Кликнуть на иконку поиска или в строку поиска
-         2. Ввести запрос, например: "настройки"
-         3. Убедиться, что отображаются релевантные результаты
-         4. Кликнуть по одному из результатов
-         5. Убедиться, что открылась соответствующая страница или раздел
-
-         Ожидаемый результат:
-         Система корректно обрабатывает поисковой запрос и отображает релевантные результаты
-         */
+        step("Предусловие: Пользователь авторизован и находится в разделе 'Профиль'");
+        step("Кликнуть на иконку поиска");
+        step("Ввести запрос, например: 'настройки'");
+        step("Убедиться, что отображаются релевантные результаты");
+        step("Кликнуть по одному из результатов");
+        step("Убедиться, что открылась соответствующая страница");
+        step("Ожидаемый результат: Система корректно обрабатывает поисковой запрос и отображает релевантные результаты");
     }
 }

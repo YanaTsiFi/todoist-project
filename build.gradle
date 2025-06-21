@@ -63,6 +63,9 @@ dependencies {
 tasks.withType(Test).configureEach {
     useJUnitPlatform ()
 
+    systemProperty "allure.junit5.skip.disabled", "false"
+    systemProperty "manual.test.run", System.getProperty("manual.test.run", "false")
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"

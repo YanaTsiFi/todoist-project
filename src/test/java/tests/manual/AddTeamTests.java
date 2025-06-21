@@ -2,7 +2,7 @@ package tests.manual;
 
 import annotations.Manual;
 import io.qameta.allure.Allure;
-import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +10,10 @@ public class AddTeamTests {
 
     @Test
     @Manual
+    @Disabled("Ручной тест – выполняется вручную через TestOps")
     @DisplayName("Добавление новой команды в профиле")
     public void shouldAddNewTeamFromProfile() {
         Allure.label("ALLURE_MANUAL", "true");
-        boolean isManualTestRun = Boolean.getBoolean("manual.test.run");
-        Assumptions.assumeTrue(isManualTestRun, "Это ручной тест!");
         /*
          Предусловие: Пользователь авторизован и находится в разделе "Профиль"
 

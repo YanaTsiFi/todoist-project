@@ -13,7 +13,7 @@ public class AddTeamTests {
     @Manual
     @DisplayName("Добавление новой команды в профиле")
     public void shouldAddNewTeamFromProfile() {
-        label("ALLURE_MANUAL", "true");
+        label("manual", "true");
 
         step("Предусловие: Пользователь авторизован и находится в разделе 'Профиль'");
         step("Нажать на кнопку 'Добавить команду'");

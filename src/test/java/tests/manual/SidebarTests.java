@@ -13,7 +13,7 @@ public class SidebarTests {
     @Manual
     @DisplayName("Открытие и закрытие боковой панели в профиле")
     public void shouldOpenAndCloseSidebar() {
-        label("ALLURE_MANUAL", "true");
+        label("manual", "true");
 
         step("Предусловие: Пользователь авторизован");
         step("Перейти в раздел 'Профиль'");

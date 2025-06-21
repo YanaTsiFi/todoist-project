@@ -13,7 +13,7 @@ public class SearchTests {
     @Manual
     @DisplayName("Проверка поиска в профиле")
     public void shouldSearchCorrectlyInProfile() {
-        label("ALLURE_MANUAL", "true");
+        label("manual", "true");
 
         step("Предусловие: Пользователь авторизован и находится в разделе 'Профиль'");
         step("Кликнуть на иконку поиска");

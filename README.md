@@ -121,45 +121,57 @@ Todoist — один из самых популярных сервисов дл�
 
 Основные команды:
 #### Все тесты
-gradle clean allTests -DbaseUrl=<your_base_url>
+gradle clean allTests\
+-DbaseUrl=https://todoist.com
 
 #### Только WEB
 gradle clean webTests \
--Dbrowser=<chrome|firefox> \
--DbrowserVersion=<версия> \
--DbrowserSize=<разрешение> \
--DbaseUrl=<your_base_url>
+-Dbrowser=chrome \
+-DbrowserVersion=lates \
+-DbrowserSize=1920x1080 \
+-DbaseUrl=https://todoist.com
 
 #### Только API
-gradle clean apiTests -DbaseUrl=<your_base_url>
+gradle clean apiTests\
+-DbaseUrl=https://todoist.com
 
 #### Мобильные тесты (локальный эмулятор)
-gradle clean mobileTests -DdeviceHost=local_emulator -DbaseUrl=<your_base_url>
+gradle clean mobileTests\
+-DdeviceHost=local_emulator \
+-DbaseUrl=http://localhost:8080 
 
 ### Удалённый запуск
 
 #### Selenoid (Web)
 gradle clean webTests \
 -DremoteUrl=selenoid.autotests.cloud \
--Dbrowser=<chrome|firefox> \
--DbrowserVersion=<версия> \
--DbrowserSize=<разрешение> \
--DbaseUrl=<your_base_url>
+-Dbrowser=chrome \
+-DbrowserVersion=127.0 \
+-DbrowserSize=1920x1080 \
+-DbaseUrl=https://todoist.com
 
 #### BrowserStack (Mobile)
-gradle clean mobileTests -DdeviceHost=browserstack -DbaseUrl=<your_base_url>
+gradle clean mobileTests \
+-DdeviceHost=browserstack \
+-DbaseUrl=https://todoist.com
 
 ### Запуск в Jenkins
-Основные параметры для запуска:
 
-- `TEST_TYPE` - тип тестов (WEB/API/MOBILE/ALL)
-- `browser` - браузер (chrome/firefox). По умолчанию: `chrome`
-- `browserVersion` - версия браузера. По умолчанию: `127.0` для Chrome, `124.0` для Firefox
-- `browserSize` - размер окна браузера. По умолчанию: `1920x1080`
-- `remoteUrl` - адрес удаленного сервера. По умолчанию: `selenoid.autotests.cloud`
-- `mobileDeviceSource` - для мобильных тестов (browserstack/local_emulator)
-- `ENVIRONMENT` - окружение (stage.qa.guru/test.qa.guru)
-- `BASE_URL` - адрес тестируемого приложения.
+Основные параметры для сборки:
+
+- `TEST_TYPE` — тип тестов: `WEB`, `API`, `MOBILE`, `ALL`
+- `BASE_URL` — адрес тестируемого приложения
+  > Пример: `https://todoist.com`
+- `browser` — браузер: `chrome` / `firefox` (по умолчанию: `chrome`)
+- `browserVersion` — версия браузера
+  > По умолчанию: `127.0` для Chrome, `124.0` для Firefox
+- `browserSize` — разрешение окна браузера (по умолчанию: `1920x1080`)
+- `remoteUrl` — адрес удалённого сервера для запуска браузеров
+  > По умолчанию: `selenoid.autotests.cloud`
+- `mobileDeviceSource` — платформа для мобильных тестов:
+  > `browserstack` или `local_emulator`
+- `ENVIRONMENT` — тестовое окружение
+  > Например: `stage.qa.guru`, `test.qa.guru`
 
 ## Генерация отчетов
 

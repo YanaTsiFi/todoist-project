@@ -2,7 +2,6 @@ package tests.manual;
 
 import annotations.Manual;
 import io.qameta.allure.Allure;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ public class SidebarTests {
 
     @Test
     @Manual
-    @Disabled("Ручной тест – выполняется вручную через TestOps")
     @DisplayName("Открытие и закрытие боковой панели в профиле")
     public void shouldOpenAndCloseSidebar() {
         Allure.label("ALLURE_MANUAL", "true");

@@ -64,7 +64,7 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform ()
 
     systemProperty "allure.junit5.skip.disabled", "false"
-    systemProperty "manual.test.run", System.getProperty("manual.test.run", "false")
+    systemProperty "manual.test.run", System.getProperty("manual.test.run", "true")
 
     testLogging {
         lifecycle {

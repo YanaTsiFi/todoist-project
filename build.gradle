@@ -61,10 +61,7 @@ dependencies {
 }
 
 tasks.withType(Test).configureEach {
-    useJUnitPlatform {
-        includeTags "MANUAL"
-        excludeTags = []
-    }
+    useJUnitPlatform ()
 
     testLogging {
         lifecycle {
@@ -73,7 +70,6 @@ tasks.withType(Test).configureEach {
         }
     }
 
-    systemProperty "allure.junit5.skip.disabled", "false"
 }
 
 tasks.register('webTests', Test) {

@@ -1,4 +1,4 @@
-# Проект автоматизации тестирования Todoist
+# Проект автоматизации тестирования [Todoist](https://www.todoist.com)
 
 <p >
   <a href="https://todoist.com">
@@ -34,7 +34,7 @@
 
 ## Описание
 
-Todoist — один из самых популярных сервисов для управления задачами и повышения продуктивности, доступный как в веб-версии, так и на мобильных платформах.
+**[Todoist](https://www.todoist.com)** — один из самых популярных сервисов для управления задачами и повышения продуктивности, доступный как в веб-версии, так и на мобильных платформах.
 
 Проект включает в себя автоматизированные UI-тесты для веб-интерфейса Todoist, с реализацией на Java, использованием Selenide, JUnit и Allure Report.
 
@@ -91,6 +91,7 @@ Todoist — один из самых популярных сервисов дл�
 - [x] Ввод текста в поле пароля
 - [x] Успешная регистрация нового пользователя
 - [x] Проверка кнопки "Start for free"
+- [x] Создание и проверка задачи
 
 ### Api
 - [x] Получение списка всех проектов
@@ -114,46 +115,59 @@ Todoist — один из самых популярных сервисов дл�
 ## Запуск тестов
 
 > **Примечание:**  
-> Убедитесь, что у вас установлены Java, Gradle, IntelliJ IDEA (рекомендуется), Appium Server (для мобильных тестов), Docker (для Selenoid) 
+> Убедитесь, что у вас установлены Java, Gradle, IntelliJ IDEA (рекомендуется), Appium Server (для мобильных тестов), Docker (для Selenoid)
 > Конфигурационные файлы `.properties` лежат в папке `resources` — при необходимости их можно изменить.
 
 ### Локальный запуск
 
 Основные команды:
 #### Все тесты
-gradle clean allTests\
+```bash
+gradle clean allTests \
 -DbaseUrl=https://todoist.com
+```
+
 
 #### Только WEB
+```bash
 gradle clean webTests \
 -Dbrowser=chrome \
 -DbrowserVersion=lates \
 -DbrowserSize=1920x1080 \
 -DbaseUrl=https://todoist.com
+```
 
 #### Только API
+```bash
 gradle clean apiTests\
 -DbaseUrl=https://todoist.com
+```
 
 #### Мобильные тесты (локальный эмулятор)
+```bash
 gradle clean mobileTests\
 -DdeviceHost=local_emulator \
--DbaseUrl=http://localhost:8080 
+-DbaseUrl=http://localhost:8080
+```
 
 ### Удалённый запуск
 
 #### Selenoid (Web)
+```bash
 gradle clean webTests \
 -DremoteUrl=selenoid.autotests.cloud \
 -Dbrowser=chrome \
 -DbrowserVersion=127.0 \
 -DbrowserSize=1920x1080 \
 -DbaseUrl=https://todoist.com
+```
 
 #### BrowserStack (Mobile)
+```bash
 gradle clean mobileTests \
 -DdeviceHost=browserstack \
 -DbaseUrl=https://todoist.com
+```
 
 ### Запуск в Jenkins
 
@@ -183,7 +197,8 @@ gradle allureServe
 
 ### Отчеты в Jenkins доступны автоматически после выполнения сборки.
 
-## Allure-report
+## [Allure Report](https://jenkins.autotests.cloud/job/YanaTsiFi-todoist-project/allure/)
+
 После завершения сборки в блоке **Build History** напротив номера сборки появятся значки **Allure Report** и **Allure TestOps**.  
 При клике на них откроются страницы с генерированным HTML-отчетом и тестовой документацией.
 
@@ -199,7 +214,7 @@ gradle allureServe
 ![Allure Report Graphs](/media/screenshots/allurereport3.png)
 
 
-## Allure-testops
+## [Allure TestOps](https://allure.autotests.cloud/project/4793/dashboards)
 На Dashboard в Allure TestOps удобно отслеживать статистику по тестам: сколько добавлено, какие ручные, а какие автоматизированы.
 Платформа позволяет легко запускать нужные тесты, анализировать результаты и управлять тестированием в одном месте — это значительно упрощает работу команды и повышает её эффективность.
 
@@ -209,7 +224,7 @@ gradle allureServe
 #### 2. Авто и Ручные тест-кейсы
 ![Allure Report Main](/media/screenshots/testops2.png)
 
-## Интеграция-с-jira
+## [Интеграция с Jira](https://jira.autotests.cloud/browse/HOMEWORK-1464)
 Реализована интеграция Allure TestOps с Jira.  
 В каждом тикете отображаются:
 
@@ -227,7 +242,7 @@ gradle allureServe
 ### Содержание уведомления
 
 - ✔️ Окружение, в котором запускались тесты
-- ✔️ Комментарий к прогону 
+- ✔️ Комментарий к прогону
 - ✔️ Длительность прохождения тестов
 - ✔️ Общее количество сценариев
 - ✔️ Процент прохождения тестов
@@ -249,5 +264,3 @@ gradle allureServe
 
 ### Пример записи выполнения мобильного теста:
 ![Mobile test video](media/video/mobile-test.gif)
-
-

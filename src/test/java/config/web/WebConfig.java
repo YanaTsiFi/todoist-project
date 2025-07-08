@@ -5,8 +5,18 @@ import org.aeonbits.owner.ConfigFactory;
 
 @Config.Sources("classpath:config/web/web.properties")
 public interface WebConfig extends Config {
-    @Key("baseUrl")
-    String baseUrl();
+
+    @Key("browser")
+    String browser();
+
+    @Key("browserVersion")
+    String browserVersion();
+
+    @Key("timeout")
+    long timeout();
+
+    @Key("browserSize")
+    String browserSize();
 
     @Key("login")
     String login();

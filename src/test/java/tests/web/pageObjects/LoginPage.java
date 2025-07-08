@@ -18,7 +18,7 @@ public class LoginPage {
 
     @Step("Open login page")
     public LoginPage openLoginPage() {
-        open("/users/showlogin");
+        open("/auth/login");
         return this;
     }
 
@@ -31,20 +31,17 @@ public class LoginPage {
     }
 
     @Step("Verify login button visibility")
-    public LoginPage checkLoginButtonVisible() {
+    public void checkLoginButtonVisible() {
         loginButton.shouldBe(visible);
-        return this;
     }
 
     @Step("Verify current URL")
-    public LoginPage checkCurrentUrl() {
+    public void checkCurrentUrl() {
         webdriver().shouldHave(urlContaining("/app"));
-        return this;
     }
 
     @Step("Verify error message: {expectedText}")
-    public LoginPage checkErrorMessage(String expectedText) {
+    public void checkErrorMessage(String expectedText) {
         $(byText(expectedText)).shouldBe(visible);
-        return this;
     }
 }

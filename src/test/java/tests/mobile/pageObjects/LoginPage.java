@@ -19,11 +19,10 @@ public class LoginPage {
     ));
 
     @Step("Open login page via Email")
-    public LoginPage openLoginPage() {
+    public void openLoginPage() {
         emailEntryButton
                 .shouldBe(visible, Duration.ofSeconds(15))
                 .click();
-        return this;
     }
 
     @Step("Verify Email input field is visible")

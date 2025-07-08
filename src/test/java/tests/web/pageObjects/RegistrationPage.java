@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class RegistrationPage {
-    protected final SelenideElement
-            startForFreeButton = $("a._button_alspx_1._primary_alspx_188"),
+    protected final SelenideElement startForFreeButton =
+            $$("div.hero_details__quLR0 a").findBy(text("Start for free")),
             emailInput = $("#element-0"),
             passwordInput = $("#element-2"),
             submitButton = $("button[type='submit']");
@@ -40,40 +40,35 @@ public class RegistrationPage {
     }
 
     @Step("Verify successful registration")
-    public RegistrationPage verifySuccessfulRegistration() {
+    public void verifySuccessfulRegistration() {
         webdriver().shouldHave(urlContaining("/app"));
-        return this;
     }
 
     @Step("Verify form elements visibility")
-    public RegistrationPage verifyFormElementsVisible() {
+    public void verifyFormElementsVisible() {
         emailInput.shouldBe(visible);
         passwordInput.shouldBe(visible);
         submitButton.shouldBe(visible, enabled);
-        return this;
     }
 
     @Step("Set email and verify: {email}")
-    public RegistrationPage setEmailAndVerify(String email) {
+    public void setEmailAndVerify(String email) {
         emailInput
                 .shouldBe(visible, interactable)
                 .setValue(email)
                 .shouldHave(value(email));
-        return this;
     }
 
     @Step("Set password and verify")
-    public RegistrationPage setPasswordAndVerify(String password) {
+    public void setPasswordAndVerify(String password) {
         passwordInput
                 .shouldBe(visible, interactable)
                 .setValue(password)
                 .shouldHave(value(password));
-        return this;
     }
 
     @Step("Verify 'Start for free' button visibility")
-    public RegistrationPage verifyStartForFreeButtonVisible() {
+    public void verifyStartForFreeButtonVisible() {
         startForFreeButton.shouldBe(visible, enabled);
-        return this;
     }
 }

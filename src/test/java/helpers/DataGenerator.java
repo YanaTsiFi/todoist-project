@@ -5,10 +5,6 @@ import net.datafaker.Faker;
 public class DataGenerator {
     private final Faker faker = new Faker();
 
-    public int getPriority() {
-        return faker.number().numberBetween(1, 5);
-    }
-
     public String getTaskName() {
         return faker.funnyName().name();
     }

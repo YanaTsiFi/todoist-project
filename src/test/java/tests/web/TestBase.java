@@ -17,14 +17,15 @@ import static config.web.WebConfig.getInstance;
 
 public class TestBase {
     protected static final WebConfig WEB_CONFIG = getInstance();
+    protected static final String BASE_URL = "https://todoist.com/";
 
     @BeforeAll
     static void setupAll() {
-        Configuration.baseUrl = WEB_CONFIG.baseUrl();
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "128");
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.timeout = Long.parseLong(System.getProperty("timeout", "10000"));
+        Configuration.baseUrl = BASE_URL;
+        Configuration.browser = WEB_CONFIG.browser();
+        Configuration.browserVersion = WEB_CONFIG.browserVersion();
+        Configuration.browserSize = WEB_CONFIG.browserSize();
+        Configuration.timeout = WEB_CONFIG.timeout();
         Configuration.remote = WEB_CONFIG.remoteUrl();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();

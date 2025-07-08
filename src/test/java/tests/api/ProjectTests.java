@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static models.ApiSpecs.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static specs.ApiSpecs.*;
 import static tests.api.TestData.*;
 
 @Tag("API")
@@ -23,11 +22,11 @@ public class ProjectTests extends TestBase {
     void getAllProjectsTest() {
         step("Get list of all user's projects", () -> {
             given()
-                    .spec(getRequest)
+                    .spec(baseRequest)
                     .when()
                     .get("/projects")
                     .then()
-                    .spec(response200);
+                    .spec(responseSpec(200));
         });
     }
 
@@ -38,11 +37,11 @@ public class ProjectTests extends TestBase {
 
         step("Get user's project", () -> {
             projectData[0] = given()
-                    .spec(getRequest)
+                    .spec(baseRequest)
                     .when()
                     .get("/projects/" + projectNumber)
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .extract().as(CreateRequest.class);
         });
 
@@ -64,7 +63,7 @@ public class ProjectTests extends TestBase {
                     .when()
                     .post("/projects")
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .extract().as(CreateRequest.class);
         });
 
@@ -90,7 +89,7 @@ public class ProjectTests extends TestBase {
                     .when()
                     .post("/projects")
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .body("name", is(outdatedTaskName))
                     .extract().jsonPath().getLong("id");
 
@@ -104,16 +103,16 @@ public class ProjectTests extends TestBase {
                     .when()
                     .post("/projects/" + id[0])
                     .then()
-                    .spec(response200);
+                    .spec(responseSpec(200));
         });
 
         step("Get updated project data", () -> {
             projectData[0] = given()
-                    .spec(getRequest)
+                    .spec(baseRequest)
                     .when()
                     .get("/projects/" + id[0])
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .extract().as(CreateRequest.class);
         });
 
@@ -137,7 +136,7 @@ public class ProjectTests extends TestBase {
                     .when()
                     .post("/projects")
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .extract().jsonPath().getLong("id");
         });
 
@@ -147,16 +146,16 @@ public class ProjectTests extends TestBase {
                     .when()
                     .delete("/projects/" + id[0])
                     .then()
-                    .spec(response204);
+                    .spec(responseSpec(204));
         });
 
         step("Check that project was deleted", () -> {
             given()
-                    .spec(getRequest)
+                    .spec(baseRequest)
                     .when()
                     .get("/projects")
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .body("findAll{it.name =~/.*/}.name.flatten()", not(hasItem(removedProjectName)));
         });
     }
@@ -174,7 +173,7 @@ public class ProjectTests extends TestBase {
                     .when()
                     .post("/projects")
                     .then()
-                    .spec(response400or422);
+                    .spec(responseSpec(400, 422));
         });
     }
 }

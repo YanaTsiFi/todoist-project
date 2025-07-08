@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static models.ApiSpecs.*;
+import static specs.ApiSpecs.*;
 import static tests.api.TestData.*;
 
 @Tag("API")
@@ -31,12 +31,11 @@ public class TaskTests extends TestBase {
                     .when()
                     .post("/tasks")
                     .then()
-                    .spec(response200)
+                    .spec(responseSpec(200))
                     .extract().as(CreateRequest.class);
         });
 
-        step("Check task name", () ->
+        step("Check task content", () ->
                 assertEquals(taskName, taskData[0].getContent()));
     }
 }
-

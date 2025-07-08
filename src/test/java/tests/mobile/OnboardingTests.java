@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import tests.mobile.pageObjects.OnboardingPage;
 
 @Tag("MOBILE")
+@Tag("ALL")
 @Epic("Onboarding Flow")
 public class OnboardingTests extends TestBase {
     private final OnboardingPage onboarding = new OnboardingPage();
@@ -22,9 +23,8 @@ public class OnboardingTests extends TestBase {
     @Story("Content Validation")
     @Severity(SeverityLevel.CRITICAL)
     void verifySecondScreenContent() {
-        onboarding
-                .verifyLogo()
-                .clickContinueButton()
-                .verifySecondScreenText();
+        onboarding.verifyLogo();
+        onboarding.clickContinueButton();
+        onboarding.verifySecondScreenText();
     }
 }

@@ -8,7 +8,7 @@ import tests.web.pageObjects.RegistrationPage;
 import static com.codeborne.selenide.Selenide.open;
 
 @Tag("WEB")
-@Tag("REGISTRATION")
+@Tag("ALL")
 @Epic("User Registration")
 @Feature("Signup Functionality")
 public class RegistrationTests extends TestBase {
@@ -59,7 +59,8 @@ public class RegistrationTests extends TestBase {
     @Story("UI Elements Verification")
     @Severity(SeverityLevel.MINOR)
     void startForFreeButtonTest() {
-        open(WEB_CONFIG.baseUrl());
+        open(BASE_URL);
         registrationPage.verifyStartForFreeButtonVisible();
     }
+
 }

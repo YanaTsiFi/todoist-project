@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class OnboardingPage {
-
     private final SelenideElement logo = $(AppiumBy.xpath(
             "//*[contains(@resource-id, 'logo') or @content-desc='Todoist Logo']"
     ));
@@ -25,25 +24,22 @@ public class OnboardingPage {
     ));
 
     @Step("Verify Todoist logo is visible")
-    public OnboardingPage verifyLogo() {
+    public void verifyLogo() {
         logo.shouldBe(visible, Duration.ofSeconds(10));
-        return this;
     }
 
     @Step("Click continue button")
-    public OnboardingPage clickContinueButton() {
+    public void clickContinueButton() {
         continueButton
                 .shouldBe(visible, Duration.ofSeconds(10))
                 .shouldBe(enabled, Duration.ofSeconds(10))
                 .click();
-        return this;
     }
 
     @Step("Verify second screen text appears")
-    public OnboardingPage verifySecondScreenText() {
+    public void verifySecondScreenText() {
         secondScreenText.shouldBe(visible, Duration.ofSeconds(15));
         secondScreenText.shouldHave(text(
                 "My tasks used to be scattered all around. Now, they"));
-        return this;
     }
 }
